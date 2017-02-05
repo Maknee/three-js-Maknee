@@ -44,13 +44,19 @@ class Scene
         } 
         else 
         {
-            //Set the camera positon for VR
-            this.camera.position.set(0, 100, 0);
+            //Set the camera positon for VR (needs the camera to be parented to an object to move???)
+            this.camera.position.set(0, 0, 0);
 
             //Setup the controls
             this.controls = new THREE.VRControls( this.camera );
             this.effect = new THREE.VREffect( this.renderer );
             document.body.appendChild( WEBVR.getButton( this.effect ) );
+
+            //Parent the camera to a group
+            var cameraPos = new THREE.Group();
+            cameraPos.position.set(0, 200, 0);
+            cameraPos.add(this.camera);
+            this.scene.add(this.cameraPos);
         }
 
         //add the renderer to the canvas

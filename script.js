@@ -55,8 +55,8 @@ class Scene
             //Parent the camera to a group
             var cameraPos = new THREE.Group();
             cameraPos.position.set(0, 200, 0);
+            this.scene.add(cameraPos);
             cameraPos.add(this.camera);
-            this.scene.add(this.cameraPos);
         }
 
         //add the renderer to the canvas

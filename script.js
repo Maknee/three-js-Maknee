@@ -773,7 +773,7 @@ class Firework
 
             // Change opacity and size
             this.system.material.opacity = 1 - timeRatio;
-            this.system.material.size = Math.sqrt(this.size) * (1 - timeRatio);
+            this.system.material.size = Math.sqrt(this.radius) * (1 - timeRatio);
 
             //Update the timer
             this.explosionTimer += this.currentTime;
@@ -807,7 +807,7 @@ class Firework
 
             // Change opacity and size
             this.system.material.opacity = 1 - timeRatio;
-            this.system.material.size = (Math.sqrt(this.size)/2) * (1 - timeRatio);
+            this.system.material.size = (Math.sqrt(this.radius)/2) * (1 - timeRatio);
 
             //Update the timer
             this.explosionTimer += this.currentTime;

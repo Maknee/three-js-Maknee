@@ -21,8 +21,6 @@ class Scene
 
         //init the perspective camera
         this.camera = new THREE.PerspectiveCamera(viewAngle, aspectRatio, nearPlane, farPlane);
-        
-        this.camera.position.set(0, 10, 0);
 
         //setup the renderer
         this.renderer = new THREE.WebGLRenderer( {antialias: true} );
@@ -34,13 +32,22 @@ class Scene
         {
             document.body.appendChild( WEBVR.getMessage() );
 
+            //Set the camera position for non-VR
+            this.camera.position.set(0, 10, 0);
+
+            //Setup the controls
             this.controls = new THREE.PointerLockControls(this.camera);
             this.controls.enabled = true;
+
             //add the camera to the scene
             this.scene.add(this.controls.getObject());
         } 
         else 
         {
+            //Set the camera positon for VR
+            this.camera.position.set(0, 100, 0);
+
+            //Setup the controls
             this.controls = new THREE.VRControls( this.camera );
             this.effect = new THREE.VREffect( this.renderer );
             document.body.appendChild( WEBVR.getButton( this.effect ) );

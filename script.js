@@ -857,7 +857,7 @@ var leaves = new ParticleSystem(scene.scene, 1000, "images/sakura.png");
 
 //Array of clouds
 var clouds = [];
-for(var i = 0; i < 25; i++)
+for(var i = 0; i < 10; i++)
 {
     clouds[i] = new Cloud(scene.scene, Math.random() * 100 + 100, "images/cloud.jpg");
 }
@@ -866,7 +866,7 @@ for(var i = 0; i < 25; i++)
 var fireworks = [];
 for(var i = 0; i < 10; i++)
 {
-    fireworks[i] = new Firework(scene.scene, Math.random() * 1000 + 200, 10, "images/particle1.png");
+    fireworks[i] = new Firework(scene.scene, Math.random() * 1000 + 200, 3, "images/particle1.png");
 }
 
 //Array of trees

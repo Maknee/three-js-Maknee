@@ -747,9 +747,15 @@ function Init()
 
 
 function DrawFrame() {
-    //update each frame
-    requestAnimationFrame(DrawFrame);
-
+    if ( WEBVR.isAvailable() === false ) 
+    {
+        //update each frame
+        requestAnimationFrame(DrawFrame);
+    }
+    else
+    {
+        scene.effect.requestAnimationFrame(DrawFrame);
+    }
     //moon
     moon.update();
 
@@ -776,9 +782,14 @@ function DrawFrame() {
 
     leaves.update();
 
-
-    //render the scene and switch buffer
-    scene.renderer.render(scene.scene, scene.camera);
+    if ( WEBVR.isAvailable() === false ) {
+        //render the scene and switch buffer
+        scene.renderer.render(scene.scene, scene.camera);
+    }
+    else
+    {
+        scene.effect.render(scene.scene, scene.camera);
+    }
 }
 
 //resize window

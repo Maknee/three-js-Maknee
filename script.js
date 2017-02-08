@@ -67,6 +67,22 @@ class Scene
 //Perlin Noise implementation (Based on how it was discussed in class)
 class PerlinNoise
 {
+    constructor()
+    {
+        //create gradient vectors
+        this.gradients = [];
+
+        //worldWidth + 100 is just extra padding for the array
+        for(var i = 0; i < worldWidth + 100; i++)
+        {
+            this.gradients[i] = [];
+            for(var j = 0; j < worldLength + 100; j++)
+            {
+                this.gradients[i][j] = new THREE.Vector2(Math.random(), Math.random());
+            }
+        }
+    }
+
     perlin(x, y) {
 
         //Used to form the vector points that bound the point we inputted
@@ -94,11 +110,12 @@ class PerlinNoise
         var xDiff = x - x1;
         var yDiff = y - y1;
 
-        //create gradient vectors
-        var aGradientVec = new THREE.Vector2(Math.random(), Math.random());
-        var bGradientVec = new THREE.Vector2(Math.random(), Math.random());
-        var cGradientVec = new THREE.Vector2(Math.random(), Math.random());
-        var dGradientVec = new THREE.Vector2(Math.random(), Math.random());
+        //Grab the gradient vectors from the gradient array generated
+        //x is incremented by 350 because x starts at -350 (same for y)
+        var aGradientVec = this.gradients[x1 + 350][y1 + 350];
+        var bGradientVec = this.gradients[x2 + 350][y1 + 350];
+        var cGradientVec = this.gradients[x1 + 350][y2 + 350];
+        var dGradientVec = this.gradients[x2 + 350][y2 + 350];
 
         //Take the dot product between the distance vectors and the gradient vectors
         var aDotVec = aGradientVec.dot(distAVec);
@@ -866,7 +883,7 @@ for(var i = 0; i < 10; i++)
 var fireworks = [];
 for(var i = 0; i < 10; i++)
 {
-    fireworks[i] = new Firework(scene.scene, Math.random() * 1000 + 200, 3, "images/particle1.png");
+    fireworks[i] = new Firework(scene.scene, Math.random() * 1000 + 200, 10, "images/particle1.png");
 }
 
 //Array of trees
